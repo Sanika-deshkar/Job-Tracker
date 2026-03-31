@@ -1,0 +1,10 @@
+.env
+job-tracker/.env
+frontend/.env
+
+node_modules
+frontend/node_modules
+job-tracker/node_modules
+
+dist
+build
