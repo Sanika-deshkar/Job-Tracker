@@ -1,0 +1,133 @@
+.home-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.home-card {
+  display: flex;
+  width: 95%;
+  max-width: 1200px;
+  min-height: 600px; /* bigger box than login/register */
+  border-radius: 15px;
+  transition: 0.3s;
+  overflow: hidden;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+              0 10px 10px rgba(0,0,0,0.22);
+}
+.home-card:hover{
+  transform: translateY(-4px);
+}
+
+/* LEFT PANEL */
+.home-left {
+  flex: 1;
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 40px;
+  text-align: left;
+}
+
+.home-left h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.home-left p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.home-left ul {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+.home-left ul li {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+/* BUTTONS */
+.home-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.home-main-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 20px;
+  background: #FF4B2B;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+
+}
+
+.home-ghost-btn {
+  padding: 12px 25px;
+  border-radius: 20px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+.home-main-btn, .home-ghost-btn {
+  transition: all 0.3s ease;
+}
+.home-main-btn:hover, .home-ghost-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* RIGHT PANEL */
+.home-right {
+  flex: 1;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.home-right h1 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.home-right p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.home-img {
+  width: 250px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .home-card {
+    flex-direction: column;
+    min-height: 700px;
+  }
+  .home-left, .home-right {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .home-left ul {
+    padding-left: 0;
+  }
+}
