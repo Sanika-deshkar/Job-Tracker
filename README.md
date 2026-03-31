@@ -41,7 +41,7 @@ git clone https://github.com/your-username/Job-Tracker.git
 cd Job-Tracker
 ```
 
----
+_____
 
 ### 2. Setup Backend
 
@@ -64,7 +64,7 @@ Run backend:
 npm run dev
 ```
 
----
+____
 
 ### 3. Setup Frontend
 
@@ -73,20 +73,13 @@ cd frontend
 npm install
 npm run dev
 ```
-
----
-
-## Environment Variables
-
-Make sure to keep your `.env` file private and never push it to GitHub.
-
----
+____
 
 ## Author
 
 Sanika Deshkar
 
----
+____
 
 ## License
 
