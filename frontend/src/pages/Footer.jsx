@@ -6,7 +6,7 @@ export default function Footer() {
         <footer className="app-footer">
             <div className="footer-container">
                 <div className="footer-brand">
-                    <h3>Job Tracker</h3>
+                    <h3>JobFlow</h3>
                     <p>Track your job applications with ease.</p>
                 </div>
                 <div className="footer-name">
@@ -25,7 +25,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="footer-bottom">
-                <p>&copy; {new Date().getFullYear()} Job Tracker. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} JobFlow. All rights reserved.</p>
             </div>
         </footer>
     );
