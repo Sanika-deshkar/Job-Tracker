@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import API from "../api";
 import "./dashboard.css";
 
@@ -12,23 +12,37 @@ function Dashboard(){
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [search, setSearch] = useState("");
-    useEffect(()=>{
-        fetchJobs();
-    },[]);
-    useEffect(()=>{
-        fetchJobs();
-    },[filterStatus, page, search]);
-
     const fetchJobs = async() => {
         try{
             const {data} = await API.get(`/jobs?page=${page}&status=${filterStatus}&search=${search}`);
             setJobs(data.jobs);
-            setTotalPages(data.totalPages);
+            setTotalPages(data.totalPages || 1);
 
         }catch(error){
             console.log(error);
         }
     };
+
+    useEffect(()=>{
+        let ignore = false;
+
+        API.get(`/jobs?page=${page}&status=${filterStatus}&search=${search}`)
+          .then(({ data }) => {
+            if (!ignore) {
+              setJobs(data.jobs);
+              setTotalPages(data.totalPages || 1);
+            }
+          })
+          .catch((error) => {
+            if (!ignore) {
+              console.log(error);
+            }
+          });
+
+        return () => {
+          ignore = true;
+        };
+    },[filterStatus, page, search]);
     const addJobHandler = async(e)=>{
         e.preventDefault();
         try{
@@ -62,6 +76,15 @@ function Dashboard(){
         console.log(error);
       }
     }
+    const handleFilterChange = (e) => {
+      setFilterStatus(e.target.value);
+      setPage(1);
+    };
+
+    const handleSearchChange = (e) => {
+      setSearch(e.target.value);
+      setPage(1);
+    };
     const logoutHandler = () => {
       localStorage.removeItem("token");
       window.location.href = "/login";
@@ -110,12 +133,38 @@ return (
 
     {/* RIGHT : Jobs List */}
     <div className="jobs-section">
+      <div className="jobs-toolbar">
+        <input
+          placeholder="Search company"
+          value={search}
+          onChange={handleSearchChange}
+        />
+        <select value={filterStatus} onChange={handleFilterChange}>
+          <option>All</option>
+          <option>Applied</option>
+          <option>Interview</option>
+          <option>Rejected</option>
+          <option>Offer</option>
+        </select>
+      </div>
+
       <div className="jobs-grid">
         {jobs.map((job) => (
           <div key={job._id} className={`job-card ${job.status.toLowerCase()}`}>
             <h4>{job.company}</h4>
             <p><strong>Role:</strong> {job.role}</p>
-            <p><strong>Status:</strong> {job.status}</p>
+            <label>
+              <strong>Status:</strong>
+              <select
+                value={job.status}
+                onChange={(e) => updateStatus(job._id, e.target.value)}
+              >
+                <option>Applied</option>
+                <option>Interview</option>
+                <option>Rejected</option>
+                <option>Offer</option>
+              </select>
+            </label>
             <p className="notes">{job.notes}</p>
             <button
               className="delete-btn"

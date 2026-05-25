@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./auth.css";
 import API from "../api";
 
@@ -7,13 +7,14 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const submitHandler = async(e) => {
     e.preventDefault();
     try{
       await API.post("/users/register",{name,email,password});
       alert("Registerd successfully!");
-      Navigate("/");
+      navigate("/login");
     }
     catch(error){
       alert(error.response.data.message);

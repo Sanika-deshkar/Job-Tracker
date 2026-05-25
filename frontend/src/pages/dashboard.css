@@ -82,6 +82,36 @@
   gap:25px;
 }
 
+.jobs-toolbar {
+  display: flex;
+  gap: 12px;
+}
+
+.jobs-toolbar input,
+.jobs-toolbar select,
+.job-card select {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 9px 10px;
+}
+
+.jobs-toolbar input {
+  flex: 1;
+  min-width: 180px;
+}
+
+.job-card label {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.job-card select {
+  flex: 1;
+}
+
 /* Jobs grid */
 .jobs-grid {
   display: grid;

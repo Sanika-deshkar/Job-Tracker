@@ -1,4 +1,3 @@
-import { compare } from "bcryptjs";
 import mongoose from "mongoose";
 const jobSchema = new mongoose.Schema({
     company:{
