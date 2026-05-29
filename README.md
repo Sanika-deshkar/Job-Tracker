@@ -1,47 +1,49 @@
-# Job Tracker Application
+# JobFlow — Job Application Tracker
 
-A full-stack web application to track job applications, manage statuses, and stay organized during your job search.
+A full-stack MERN web application to track job applications, manage their status, and stay organized during your job search.
+
+### 🔗 Live Demo
+
+* **App:** [job-tracker-psi-bice.vercel.app](https://job-tracker-psi-bice.vercel.app/)
+* **API:** [job-tracker-backend-m60y.onrender.com](https://job-tracker-backend-m60y.onrender.com)
+
+> ⏳ The backend is hosted on Render's free tier, which sleeps after inactivity. The first request after an idle period may take 30–60 seconds to wake up.
 
 ____
 
 ## Features
 
-* User Authentication (Login/Register)
-* Add, update, and delete job applications
-* Track job status (Applied, Interview, Rejected, Offer)
-* Protected routes for secure access
-* Clean and responsive UI
+* **User Authentication** — register & login with JWT tokens and bcrypt-hashed passwords
+* **Per-user data** — each user only sees and manages their own applications
+* **Full CRUD** — add, update status, and delete job applications
+* **Status tracking** — Applied, Interview, Rejected, Offer (with colored indicators)
+* **Search & filter** — search by company name and filter by status
+* **Server-side pagination** — efficient loading of large lists
+* **Protected routes** — dashboard is accessible only when logged in
+* **Responsive, modern UI** — clean indigo/violet design built with React
 
 ____
 
 ## Tech Stack
 
-### Frontend
-
-* React (Vite)
-* CSS
-
-### Backend
-
-* Node.js
-* Express.js
-
-### Database
-
-* MongoDB
+| Layer | Technology |
+|-------|------------|
+| Frontend | React (Vite), React Router, Axios |
+| Backend | Node.js, Express |
+| Database | MongoDB (Mongoose) |
+| Auth | JWT, bcryptjs |
+| Hosting | Vercel (frontend), Render (backend), MongoDB Atlas (database) |
 
 ____
 
-## Installation & Setup
+## Installation & Setup (Local)
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/Job-Tracker.git
+git clone https://github.com/Sanika-deshkar/Job-Tracker.git
 cd Job-Tracker
 ```
-
-_____
 
 ### 2. Setup Backend
 
@@ -50,21 +52,20 @@ cd job-tracker
 npm install
 ```
 
-Create a `.env` file in `job-tracker/` and add:
+Create a `.env` file in `job-tracker/` (see `.env.example`):
 
 ```
 PORT=5000
-MONGO_URI=your_database_url
+MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
+CLIENT_URL=http://localhost:5173
 ```
 
-Run backend:
+Run the backend:
 
 ```bash
 npm run dev
 ```
-
-____
 
 ### 3. Setup Frontend
 
@@ -73,11 +74,39 @@ cd frontend
 npm install
 npm run dev
 ```
+
+The frontend defaults to `http://localhost:5000/api`. To point it elsewhere,
+create `frontend/.env` (see `.env.example`):
+
+```
+VITE_API_URL=http://localhost:5000/api
+```
+
+____
+
+## Project Structure
+
+```
+Job-Tracker/
+├── frontend/        # React (Vite) client
+│   └── src/
+│       ├── pages/         # Home, Login, Register, Dashboard, Header, Footer
+│       ├── components/    # ProtectedRoute
+│       └── api.js         # Axios instance with auth interceptor
+└── job-tracker/     # Express API server
+    ├── controllers/       # job & user logic
+    ├── models/            # Mongoose schemas
+    ├── routes/            # API routes
+    ├── config/            # DB connection
+    └── server.js
+```
+
 ____
 
 ## Author
 
-Sanika Deshkar
+**Sanika Deshkar**
+[GitHub](https://github.com/Sanika-deshkar) · [LinkedIn](https://www.linkedin.com/in/sanika-deshkar/)
 
 ____
 
