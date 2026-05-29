@@ -7,18 +7,19 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const submitHandler = async(e) => {
     e.preventDefault();
+    setError("");
     try{
       await API.post("/users/register",{name,email,password});
-      alert("Registerd successfully!");
-      navigate("/login");
+      navigate("/login", { state: { registered: true } });
     }
     catch(error){
-      alert(error.response.data.message);
-    };
+      setError(error.response?.data?.message || "Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -35,6 +36,8 @@ function Register() {
 
         <div className="right-panel">
           <h1>Create Account</h1>
+
+          {error && <p className="form-error">{error}</p>}
 
           <form onSubmit={submitHandler}>
             <input

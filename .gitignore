@@ -8,3 +8,5 @@ job-tracker/node_modules
 
 dist
 build
+
+.claude

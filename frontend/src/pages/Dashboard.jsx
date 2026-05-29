@@ -149,8 +149,15 @@ return (
       </div>
 
       <div className="jobs-grid">
+        {jobs.length === 0 && (
+          <div className="empty-state">
+            <p style={{fontSize:'32px'}}>📋</p>
+            <p>No applications yet. Add your first job on the left!</p>
+          </div>
+        )}
         {jobs.map((job) => (
           <div key={job._id} className={`job-card ${job.status.toLowerCase()}`}>
+            <span className="status-badge">{job.status}</span>
             <h4>{job.company}</h4>
             <p><strong>Role:</strong> {job.role}</p>
             <label>
@@ -165,7 +172,7 @@ return (
                 <option>Offer</option>
               </select>
             </label>
-            <p className="notes">{job.notes}</p>
+            {job.notes && <p className="notes">{job.notes}</p>}
             <button
               className="delete-btn"
               onClick={() => deleteJob(job._id)}

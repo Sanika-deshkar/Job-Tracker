@@ -1,22 +1,26 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./auth.css";
 import API from "../api";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const justRegistered = location.state?.registered;
 
   const submitHandler = async(e) => {
     e.preventDefault();
+    setError("");
     try{
       const {data} = await API.post("/users/login",{email,password});
       //store token:
       localStorage.setItem("token",data.token);
       navigate("/dashboard");
     }catch(error){
-      alert(error.response.data.message);
+      setError(error.response?.data?.message || "Something went wrong. Please try again.");
     }
   };
 
@@ -27,6 +31,11 @@ function Login() {
         {/* LEFT = FORM */}
         <div className="right-panel">
           <h1>Login</h1>
+
+          {justRegistered && (
+            <p className="form-success">Account created! Please log in.</p>
+          )}
+          {error && <p className="form-error">{error}</p>}
 
           <form onSubmit={submitHandler}>
             <input
