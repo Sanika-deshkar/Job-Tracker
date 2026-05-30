@@ -85,19 +85,8 @@ function Dashboard(){
       setSearch(e.target.value);
       setPage(1);
     };
-    const logoutHandler = () => {
-      localStorage.removeItem("token");
-      window.location.href = "/login";
-    };
-    
-
 return (
    <div className="dashboard-page">
-  <header className="top-bar">
-    <h2 className="logo">Dashboard</h2>
-    <button className="logout-btn" onClick={logoutHandler}>Logout</button>
-  </header>
-
   <div className="dashboard-container">
 
     {/* LEFT : Add Job */}

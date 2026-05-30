@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Header from "./pages/Header.jsx";
 import Footer from "./pages/Footer.jsx";
 import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/about" element={<About />} />
       </Routes>
       </main>
       <Footer />

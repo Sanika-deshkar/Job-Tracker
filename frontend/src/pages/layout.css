@@ -50,6 +50,25 @@
   background: var(--primary-light);
 }
 
+.nav-logout-btn {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  padding: 6px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.nav-logout-btn:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: #fef2f2;
+}
+
 /* ===== FOOTER ===== */
 .app-footer {
   background: #0f172a;
