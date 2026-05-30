@@ -2,6 +2,8 @@ import {Link} from "react-router-dom";
 import "./layout.css";
 
 export default function Header() {
+    const isLoggedIn = !!localStorage.getItem("token");
+
     return (
         <header className="app-header">
             <div className="header-container">
@@ -11,7 +13,7 @@ export default function Header() {
                 <nav className="nav-links">
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/">Home</Link>
-                    <Link to="/login">Login</Link>
+                    {!isLoggedIn && <Link to="/login">Login</Link>}
                 </nav>
             </div>
         </header>
