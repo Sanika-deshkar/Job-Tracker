@@ -26,6 +26,11 @@ export default function About() {
                     <h3>Secure & Private</h3>
                     <p>Your data is protected with JWT authentication. Only you can see your applications.</p>
                 </div>
+                <div className="about-card">
+                    <span className="about-icon"><FaGithub /></span>
+                    <h3>Open Source</h3>
+                    <p>Built transparently and open for contribution. Free to use forever — no hidden costs or subscriptions.</p>
+                </div>
             </div>
 
             <div className="about-cta">
